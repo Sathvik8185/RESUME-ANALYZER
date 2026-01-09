@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VAID PR Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brand">VAID PR RESUME ANALYZER</div>
+      <div class="top-actions">
+        <span class="user">HR Admin</span>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+          alt="profile"
+        />
+      </div>
+    </header>
+
+    <div class="dashboard">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <h3>Dashboard</h3>
+        <ul class="menu">
+          <li class="active">Resume Analyzer</li>
+          <li>Upload History</li>
+          <li>Reports</li>
+          <li>Analytics</li>
+        </ul>
+
+        <div class="logout-section">
+          <button class="logout-btn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <h1>Resume Analyzer</h1>
+        <p class="subtitle">
+          Compare resumes against job descriptions and generate insights
+        </p>
+
+        <div class="status-bar">
+          <span class="status analyzed">Status: Ready</span>
+          <span class="time">Awaiting Analysis</span>
+        </div>
+
+        <div class="grid">
+          <section class="card full-width upload-panel center-column">
+            <h2>Upload Resume (PDF)</h2>
+            <input type="file" class="file-input" accept=".pdf" />
+
+            <div class="action-row">
+              <button class="analyze-btn">Analyze Resume</button>
+              <button class="secondary-btn">Reset</button>
+            </div>
+
+            <div class="analysis-circles">
+              <div class="circle">
+                <div class="percent">85%</div>
+                <div class="label">Skills</div>
+              </div>
+              <div class="circle">
+                <div class="percent">72%</div>
+                <div class="label">Experience</div>
+              </div>
+              <div class="circle">
+                <div class="percent">64%</div>
+                <div class="label">Education</div>
+              </div>
+              <div class="circle">
+                <div class="percent">90%</div>
+                <div class="label">Certs</div>
+              </div>
+            </div>
+
+            <div class="download-wrap">
+              <button class="download-btn">Download PDF</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Job Description</h2>
+            <textarea
+              placeholder="Enter Full Stack Developer Job Description..."
+            ></textarea>
+          </section>
+
+          <section class="card">
+            <h2>Match Score</h2>
+            <div class="score">78%</div>
+          </section>
+
+          <section class="card">
+            <h2>Keyword Analysis</h2>
+
+            <p><strong>Matched Keywords</strong></p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">React</span>
+            </div>
+
+            <p><strong>Missing Keywords</strong></p>
+            <div class="tags">
+              <span class="tag missing">Docker</span>
+              <span class="tag missing">AWS</span>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Suitability Summary</h2>
+            <p>
+              Candidate shows <strong>moderate alignment</strong> with the Full
+              Stack Developer role.
+            </p>
+          </section>
+
+          <section class="card center">
+            <div class="action-buttons">
+              <button class="secondary-btn">View Resume</button>
+              <button class="secondary-btn">Download Report</button>
+              <button class="secondary-btn">Save Analysis</button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
