@@ -276,20 +276,40 @@ textarea {
   font-weight: 600;
 }
 
-.header .logo {
-  font-size: 20px;
-}
-.header .nav a {
-  font-size: 16px;
-  color: rgb(13, 63, 25);
-  margin-left: 20px;
-  text-decoration: none;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+  background-color: #ecfdf5;
+  border-bottom: 1px solid #d1fae5;
 }
 
-.footer {
-  background-color: #064e3b;  
-  color: #d1fae5;            
-  padding: 20px 30px;         
-  text-align: center;          
-  font-size: 0.9rem;           
+.header .logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #064e3b;
+  letter-spacing: 0.5px;
 }
+
+.header .nav a {
+  font-size: 16px;
+  font-weight: 500;
+  color: #065f46;
+  margin-left: 24px;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.header .nav a:hover {
+  background-color: #d1fae5;
+  color: #064e3b;
+}
+
+.header .nav a.active {
+  background-color: #059669;
+  color: white;
+}
+
