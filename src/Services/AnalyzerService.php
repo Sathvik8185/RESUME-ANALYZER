@@ -5,20 +5,26 @@ class AnalyzerService {
         "and", "the", "is", "in", "at", "of", "a", "to", "for", "with", "on", "as", "by", 
         "an", "be", "we", "are", "it", "or", "that", "this", "from", "but", "not", "have", 
         "has", "had", "will", "would", "can", "could", "should", "required", "requirements",
-        "description", "responsibilities", "job", "work", "experience", "year", "years", "looking", "seeking"
+        "description", "responsibilities", "job", "work", "experience", "year", "years", 
+        "looking", "seeking", "must", "knowledge", "skills", "proficient"
     ];
 
     public function analyze($resumeText, $jdText) {
         $resumeTokens = $this->tokenize($resumeText);
         $jdTokens = $this->tokenize($jdText);
 
-        // Filter JD to get unique keywords
+        // Extract unique keywords from JD
         $keywords = array_diff($jdTokens, $this->stopWords);
         $keywords = array_unique($keywords); 
         $totalKeywords = count($keywords);
 
         if ($totalKeywords === 0) {
-            return ['score' => 0, 'matched' => [], 'missing' => [], 'suitability' => 'Invalid JD'];
+            return [
+                'score' => 0, 
+                'matched' => [], 
+                'missing' => [], 
+                'suitability' => 'Invalid JD'
+            ];
         }
 
         $matched = [];
@@ -45,6 +51,7 @@ class AnalyzerService {
 
     private function tokenize($text) {
         $text = strtolower($text);
+        // Remove special characters but keep alphanumeric
         $text = preg_replace('/[^a-z0-9\s]/', '', $text); 
         return preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
     }
