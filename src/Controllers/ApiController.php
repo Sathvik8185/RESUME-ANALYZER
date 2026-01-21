@@ -16,16 +16,14 @@ class ApiController {
         $this->analyzer = new AnalyzerService();
     }
 
+    // --- 1. POST: Upload & Analyze Resume ---
     public function analyzeResume() {
-        // Set Headers for JSON and CORS
         header("Content-Type: application/json");
         header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-        // Validates Inputs
+        // Validate Inputs
         if (!isset($_FILES['resume']) || !isset($_POST['jd_text'])) {
-            http_response_code(400); // Bad Request
+            http_response_code(400);
             echo json_encode(["status" => "error", "message" => "Missing Resume file or Job Description text."]);
             return;
         }
@@ -33,7 +31,7 @@ class ApiController {
         $jdText = $_POST['jd_text'];
         $file = $_FILES['resume'];
 
-        // Validates File Type (PDF Only)
+        // Validate File Type (PDF Only)
         $fileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if ($fileType != "pdf") {
             http_response_code(400);
@@ -41,7 +39,7 @@ class ApiController {
             return;
         }
 
-        // Validates File Size (Max 5MB)
+        // Validate File Size (Max 5MB)
         if ($file['size'] > 5000000) {
             http_response_code(400);
             echo json_encode(["status" => "error", "message" => "File is too large. Max limit is 5MB."]);
@@ -74,14 +72,13 @@ class ApiController {
                 $query = "INSERT INTO analysis_logs (jd_text, resume_filename, match_score, matched_keywords, missing_keywords) VALUES (:jd, :file, :score, :matched, :missing)";
                 $stmt = $this->db->prepare($query);
                 $stmt->execute([
-                    ':jd' => substr($jdText, 0, 1000), // Truncate JD if too long
+                    ':jd' => substr($jdText, 0, 1000),
                     ':file' => $fileName,
                     ':score' => $result['score'],
                     ':matched' => json_encode($result['matched']),
                     ':missing' => json_encode($result['missing'])
                 ]);
 
-                // Success Response
                 http_response_code(200);
                 echo json_encode([
                     "status" => "success",
@@ -96,6 +93,55 @@ class ApiController {
         } else {
             http_response_code(500);
             echo json_encode(["status" => "error", "message" => "Failed to upload file to server."]);
+        }
+    }
+
+    // --- 2. GET: Fetch History ---
+    public function getHistory() {
+        header("Content-Type: application/json");
+        header("Access-Control-Allow-Origin: *");
+
+        try {
+            $query = "SELECT id, jd_text, resume_filename, match_score, created_at FROM analysis_logs ORDER BY created_at DESC";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            echo json_encode(["status" => "success", "data" => $data]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+        }
+    }
+
+    // --- 3. DELETE: Remove Record ---
+    public function deleteHistory() {
+        header("Content-Type: application/json");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: DELETE");
+
+        if (!isset($_GET['id'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID is required"]);
+            return;
+        }
+
+        $id = $_GET['id'];
+
+        try {
+            $query = "DELETE FROM analysis_logs WHERE id = :id";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([':id' => $id]);
+
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(["status" => "success", "message" => "Record deleted successfully"]);
+            } else {
+                http_response_code(404);
+                echo json_encode(["status" => "error", "message" => "Record not found"]);
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
         }
     }
 }
