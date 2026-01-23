@@ -1,24 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Frontend JS Task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Analyzer - Upload & Analyze</title>
     <link rel="stylesheet" href="cs/style.css" />
   </head>
   <body>
-    <h2>Sample Form</h2>
+    <div class="container">
+      <header>
+        <h1>Resume Analyzer</h1>
+        <p class="subtitle">Upload your resume and get instant analysis</p>
+        <p class="demo-badge" id="demoBadge" style="display: none">
+          🎭 Demo Mode Active
+        </p>
+      </header>
 
-    <form id="userForm">
-      <input type="text" id="name" placeholder="Name" />
-      <input type="email" id="email" placeholder="Email" />
-      <input type="file" id="resume" />
-      <button type="submit">Submit</button>
-    </form>
+      <main>
+        <form id="userForm" class="upload-form">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
 
-    <div id="result"></div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your.email@example.com"
+              required
+            />
+          </div>
 
+          <div class="form-group">
+            <label for="jobDescription">Job Description (Optional)</label>
+            <textarea
+              id="jobDescription"
+              name="jobDescription"
+              placeholder="Paste the job description here to match your resume against it..."
+              rows="5"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="resume">Upload Resume (PDF only) *</label>
+            <input
+              type="file"
+              id="resume"
+              name="resume"
+              accept=".pdf"
+              required
+            />
+            <small class="help-text">Maximum file size: 5MB</small>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">Analyze Resume</span>
+          </button>
+        </form>
+
+        <div id="result" class="result-container">
+          <p class="info-text">Upload a resume to get started</p>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 Resume Analyzer. Ready for backend integration.</p>
+      </footer>
+    </div>
+
+    <!-- Load scripts in correct order: config -> gemini -> mock -> services -> utilities -> app -->
+    <script src="js/config.js"></script>
+    <script src="js/geminiService.js"></script>
+    <script src="js/mockData.js"></script>
+    <script src="js/apiService.js"></script>
     <script src="js/validation.js"></script>
     <script src="js/fileCheck.js"></script>
-    <script src="js/dummyData.js"></script>
+    <script src="js/uiHandler.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
