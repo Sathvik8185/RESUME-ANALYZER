@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Resume Analyzer - Getting Started</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        color: #667eea;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #888;
+        margin-bottom: 40px;
+        font-size: 1.1em;
+      }
+
+      .step {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border-left: 5px solid #667eea;
+      }
+
+      .step-number {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-weight: bold;
+        margin-right: 15px;
+        font-size: 1.1em;
+      }
+
+      .step h2 {
+        display: inline-block;
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+      }
+
+      .step p {
+        color: #666;
+        line-height: 1.6;
+        margin-top: 10px;
+      }
+
+      .code-box {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+      }
+
+      .code-box code {
+        color: #ce9178;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .btn-secondary {
+        background: #28a745;
+        color: white;
+      }
+
+      .btn-info {
+        background: #17a2b8;
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .status-box {
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .status-box.warning {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        color: #856404;
+      }
+
+      .status-box.success {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        color: #155724;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+
+      .feature-list li {
+        padding: 10px;
+        margin-bottom: 8px;
+        background: white;
+        border-radius: 6px;
+        border-left: 3px solid #28a745;
+      }
+
+      .feature-list li:before {
+        content: "✓ ";
+        color: #28a745;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .highlight {
+        background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 25px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 Resume Analyzer</h1>
+      <p class="subtitle">AI-Powered Resume Analysis with Google Gemini</p>
+
+      <div id="statusBox" class="status-box warning">
+        <strong>⚠️ Setup Required</strong><br />
+        Please add your Gemini API key to get started
+      </div>
+
+      <div class="step">
+        <span class="step-number">1</span>
+        <h2>Get Your Gemini API Key</h2>
+        <p>
+          Visit Google AI Studio and create a free API key. This takes about 2
+          minutes.
+        </p>
+        <div class="button-group">
+          <a
+            href="https://makersuite.google.com/app/apikey"
+            target="_blank"
+            class="btn btn-primary"
+          >
+            🔑 Get API Key
+          </a>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-number">2</span>
+        <h2>Add Your API Key</h2>
+        <p>
+          Open the file <span class="highlight">js/config.js</span> and paste
+          your API key:
+        </p>
+        <div class="code-box">
+          <pre>GEMINI: {
+    <code>API_KEY: "YOUR_API_KEY_HERE"</code>,  ← Paste your key here
+    USE_GEMINI: true
+}</pre>
+        </div>
+        <p style="margin-top: 10px; color: #f39c12">
+          💡 <strong>Tip:</strong> Keep your API key secure. For production, use
+          a backend server.
+        </p>
+      </div>
+
+      <div class="step">
+        <span class="step-number">3</span>
+        <h2>Test Your Connection</h2>
+        <p>
+          Verify that everything is working correctly before analyzing resumes.
+        </p>
+        <div class="button-group">
+          <a href="test-gemini.html" class="btn btn-info">
+            🧪 Test API Connection
+          </a>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-number">4</span>
+        <h2>Start Analyzing!</h2>
+        <p>You're all set! Start analyzing resumes with AI-powered insights.</p>
+        <div class="button-group">
+          <a href="index.html" class="btn btn-secondary"> 📄 Analyze Resume </a>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 40px;
+          padding: 25px;
+          background: #f8f9fa;
+          border-radius: 12px;
+        "
+      >
+        <h3 style="color: #667eea; margin-bottom: 15px">✨ What You'll Get:</h3>
+        <ul class="feature-list">
+          <li>Complete personal information extraction</li>
+          <li>Work experience with responsibilities & achievements</li>
+          <li>Education history with GPA</li>
+          <li>Skills categorized by type (technical, soft, tools)</li>
+          <li>Projects with technologies used</li>
+          <li>Certifications and awards</li>
+          <li>Job matching score (when job description provided)</li>
+          <li>AI-powered recommendations</li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 30px; text-align: center; color: #888">
+        <p><strong>Need Help?</strong></p>
+        <p style="margin-top: 10px">
+          📖
+          <a href="GEMINI_SETUP.md" style="color: #667eea"
+            >Detailed Setup Guide</a
+          >
+          | 📚 <a href="README.md" style="color: #667eea">Full Documentation</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script>
+      // Check if API key is configured
+      window.addEventListener("DOMContentLoaded", () => {
+        const statusBox = document.getElementById("statusBox");
+
+        if (
+          typeof CONFIG !== "undefined" &&
+          CONFIG.GEMINI &&
+          CONFIG.GEMINI.API_KEY
+        ) {
+          statusBox.className = "status-box success";
+          statusBox.innerHTML = `
+                    <strong>✅ API Key Found!</strong><br>
+                    Your API key is configured. Click "Test API Connection" to verify it works.
+                `;
+        } else {
+          statusBox.className = "status-box warning";
+          statusBox.innerHTML = `
+                    <strong>⚠️ Setup Required</strong><br>
+                    Please add your Gemini API key to <strong>js/config.js</strong> to get started.
+                `;
+        }
+      });
+    </script>
+  </body>
+</html>
