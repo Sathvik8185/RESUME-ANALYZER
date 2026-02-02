@@ -4,20 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume Analyzer - Upload & Analyze</title>
+
+    <!-- Main Styles -->
     <link rel="stylesheet" href="cs/style.css" />
   </head>
+
   <body>
     <div class="container">
-      <header>
-        <h1>Resume Analyzer</h1>
-        <p class="subtitle">Upload your resume and get instant analysis</p>
-        <p class="demo-badge" id="demoBadge" style="display: none">
-          🎭 Demo Mode Active
-        </p>
+
+      <!-- ================= HEADER ================= -->
+      <header class="app-header">
+        <div class="header-left">
+          <h1 class="logo">Resume Analyzer</h1>
+          <p class="subtitle">
+              get resume insights in seconds
+          </p>
+        </div>
+
+        <div class="header-right">
+          <span
+            class="demo-badge"
+            id="demoBadge"
+            style="display: none"
+            aria-live="polite"
+          >
+            🎭 Demo Mode
+          </span>
+        </div>
       </header>
 
+      <!-- ================= MAIN ================= -->
       <main>
-        <form id="userForm" class="upload-form">
+        <form
+          id="userForm"
+          class="upload-form"
+          novalidate
+        >
+
+          <!-- Full Name -->
           <div class="form-group">
             <label for="name">Full Name *</label>
             <input
@@ -26,9 +50,12 @@
               name="name"
               placeholder="Enter your full name"
               required
+              autocomplete="name"
             />
+            <small class="error-text" id="nameError"></small>
           </div>
 
+          <!-- Email -->
           <div class="form-group">
             <label for="email">Email Address *</label>
             <input
@@ -37,19 +64,25 @@
               name="email"
               placeholder="your.email@example.com"
               required
+              autocomplete="email"
             />
+            <small class="error-text" id="emailError"></small>
           </div>
 
+          <!-- Job Description -->
           <div class="form-group">
-            <label for="jobDescription">Job Description (Optional)</label>
+            <label for="jobDescription">
+              Job Description (Optional)
+            </label>
             <textarea
               id="jobDescription"
               name="jobDescription"
-              placeholder="Paste the job description here to match your resume against it..."
+              placeholder="Paste the job description here to match your resume"
               rows="5"
             ></textarea>
           </div>
 
+          <!-- Resume Upload -->
           <div class="form-group">
             <label for="resume">Upload Resume (PDF only) *</label>
             <input
@@ -59,25 +92,60 @@
               accept=".pdf"
               required
             />
-            <small class="help-text">Maximum file size: 5MB</small>
+            <small class="help-text">
+              Accepted format: PDF · Max size: 5MB
+            </small>
+            <small class="error-text" id="fileError"></small>
           </div>
 
-          <button type="submit" class="submit-btn">
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="submit-btn"
+            id="submitBtn"
+          >
             <span class="btn-text">Analyze Resume</span>
           </button>
         </form>
 
-        <div id="result" class="result-container">
-          <p class="info-text">Upload a resume to get started</p>
-        </div>
+        <!-- ================= RESULT ================= -->
+        <section
+          id="result"
+          class="result-container"
+          aria-live="polite"
+        >
+          <p class="info-text">
+            Upload a resume to get started 🚀
+          </p>
+        </section>
       </main>
 
-      <footer>
-        <p>&copy; 2026 Resume Analyzer. Ready for backend integration.</p>
+      <!-- ================= FOOTER ================= -->
+      <footer class="app-footer">
+        <div class="footer-top">
+          <p class="footer-brand">Resume Analyzer</p>
+          <p class="footer-tagline">
+            Empowering your career with AI-driven insights
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            © 2026 Resume Analyzer · Ready for backend integration
+          </p>
+        </div>
       </footer>
+
     </div>
 
-    <!-- Load scripts in correct order: config -> gemini -> mock -> services -> utilities -> app -->
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Load scripts in correct order -->
     <script src="js/config.js"></script>
     <script src="js/geminiService.js"></script>
     <script src="js/mockData.js"></script>
@@ -86,5 +154,6 @@
     <script src="js/fileCheck.js"></script>
     <script src="js/uiHandler.js"></script>
     <script src="js/app.js"></script>
+
   </body>
 </html>
