@@ -1,0 +1,274 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+header h1 {
+  font-size: 2em;
+  margin-bottom: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+header h1:hover {
+  transform: translateY(-2px);
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.subtitle {
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+.demo-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+/* =====================================================
+   MAIN CARD
+   ===================================================== */
+main {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1.5px solid #e0e0e0;
+}
+
+/* =====================================================
+   FORM
+   ===================================================== */
+.upload-form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e5e5e5;
+}
+
+.form-group:last-child {
+  border-bottom: none;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-group input[type="file"] {
+  border-style: dashed;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]:hover {
+  border-color: #667eea;
+}
+
+.help-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #888;
+}
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* =====================================================
+   RESULT CONTAINER
+   ===================================================== */
+.result-container {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  border: 1.5px solid #e0e0e0;
+}
+
+.info-text {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* =====================================================
+   MESSAGE BOXES
+   ===================================================== */
+.message-container {
+  padding: 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.message-container.error {
+  background: #fee;
+  border-left: 4px solid #f44;
+}
+
+.message-container.success {
+  background: #efe;
+  border-left: 4px solid #4c4;
+}
+
+/* =====================================================
+   CARDS + HOVER HEADINGS
+   ===================================================== */
+.info-card,
+.summary-card,
+.experience-card,
+.education-card,
+.skills-card,
+.projects-card,
+.certifications-card,
+.match-skills-card,
+.recommendations-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+}
+
+.info-card h3,
+.summary-card h3,
+.experience-card h3,
+.education-card h3,
+.skills-card h3,
+.projects-card h3,
+.certifications-card h3,
+.match-skills-card h3,
+.recommendations-card h3 {
+  color: #667eea;
+  margin-bottom: 18px;
+  font-size: 1.4em;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.info-card h3::after,
+.summary-card h3::after,
+.experience-card h3::after,
+.education-card h3::after,
+.skills-card h3::after,
+.projects-card h3::after,
+.certifications-card h3::after,
+.match-skills-card h3::after,
+.recommendations-card h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+.info-card h3:hover::after,
+.summary-card h3:hover::after,
+.experience-card h3:hover::after,
+.education-card h3:hover::after,
+.skills-card h3:hover::after,
+.projects-card h3:hover::after,
+.certifications-card h3:hover::after,
+.match-skills-card h3:hover::after,
+.recommendations-card h3:hover::after {
+  width: 45%;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-size: 14px;
+  opacity: 0.9;
+  padding-top: 16px;
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+}
