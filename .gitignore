@@ -31,3 +31,4 @@ Rajesh_Resume.pdf# Environment variables
 # Build outputs (if added later)
 dist/
 build/
+vendor/
