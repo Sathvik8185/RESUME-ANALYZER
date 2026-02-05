@@ -252,6 +252,92 @@ main {
 }
 
 /* =====================================================
+   SKILL TAGS (Fixes the "No Gap" Issue)
+   ===================================================== */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* This creates the space between words */
+  margin-top: 10px;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+/* Green for Matched */
+.skill-tag.matched {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+/* Red/Pink for Missing */
+.skill-tag.missing {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+/* Blue/Grey for General Skills */
+.skill-tag.tech, 
+.skill-tag.tool, 
+.skill-tag.soft {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border-color: #d6d8db;
+}
+
+/* =====================================================
+   SCORE SECTION
+   ===================================================== */
+.score-section {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background: white;
+}
+
+.score-section.score-excellent { border-color: #28a745; }
+.score-section.score-good { border-color: #ffc107; }
+.score-section.score-fair { border-color: #fd7e14; }
+.score-section.score-poor { border-color: #dc3545; }
+
+.score-display {
+  margin: 15px 0;
+}
+
+.score-value {
+  font-size: 2.5em;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.score-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 1s ease-in-out;
+}
+
+/* =====================================================
    FOOTER
    ===================================================== */
 footer {

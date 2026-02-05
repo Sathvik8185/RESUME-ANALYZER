@@ -51,8 +51,17 @@ class AnalyzerService {
 
     private function tokenize($text) {
         $text = strtolower($text);
-        // Remove special characters but keep alphanumeric
+        
+        // 1. Replace newlines/tabs with spaces (Fixes "python\nneeded" -> "pythonneeded")
+        $text = str_replace(["\r", "\n", "\t"], ' ', $text);
+        
+        // 2. Replace punctuation with spaces
+        $text = preg_replace('/[\/\.\,\-_]/', ' ', $text);
+        
+        // 3. Remove special chars
         $text = preg_replace('/[^a-z0-9\s]/', '', $text); 
+        
+        // 4. Split
         return preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
     }
 
