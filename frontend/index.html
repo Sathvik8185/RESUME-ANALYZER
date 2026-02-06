@@ -16,9 +16,7 @@
       <header class="app-header">
         <div class="header-left">
           <h1 class="logo">Resume Analyzer</h1>
-          <p class="subtitle">
-              get resume insights in seconds
-          </p>
+          <p class="subtitle">Get resume insights in seconds</p>
         </div>
 
         <div class="header-right">
@@ -39,6 +37,7 @@
           id="userForm"
           class="upload-form"
           novalidate
+          onsubmit="return false;"
         >
 
           <!-- Full Name -->
@@ -52,7 +51,6 @@
               required
               autocomplete="name"
             />
-            <small class="error-text" id="nameError"></small>
           </div>
 
           <!-- Email -->
@@ -66,19 +64,17 @@
               required
               autocomplete="email"
             />
-            <small class="error-text" id="emailError"></small>
           </div>
 
           <!-- Job Description -->
           <div class="form-group">
-            <label for="jobDescription">
-              Job Description (Optional)
-            </label>
+            <label for="jobDescription">Job Description *</label>
             <textarea
               id="jobDescription"
               name="jobDescription"
               placeholder="Paste the job description here to match your resume"
               rows="5"
+              required
             ></textarea>
           </div>
 
@@ -89,13 +85,12 @@
               type="file"
               id="resume"
               name="resume"
-              accept=".pdf"
+              accept="application/pdf,.pdf"
               required
             />
             <small class="help-text">
               Accepted format: PDF · Max size: 5MB
             </small>
-            <small class="error-text" id="fileError"></small>
           </div>
 
           <!-- Submit -->
@@ -107,6 +102,15 @@
             <span class="btn-text">Analyze Resume</span>
           </button>
         </form>
+
+        <!-- Download Report -->
+        <button
+          id="downloadReportBtn"
+          class="submit-btn"
+          style="margin-top:20px; display:none;"
+        >
+          Download Analysis Report (PDF)
+        </button>
 
         <!-- ================= RESULT ================= -->
         <section
@@ -136,23 +140,20 @@
         </div>
 
         <div class="footer-bottom">
-          <p>
-            © 2026 Resume Analyzer · Ready for backend integration
-          </p>
+          <p>© 2026 Resume Analyzer · Backend Integrated</p>
         </div>
       </footer>
 
     </div>
 
     <!-- ================= SCRIPTS ================= -->
-    <!-- Load scripts in correct order -->
+    <!-- Correct loading order -->
     <script src="js/config.js"></script>
-    <script src="js/geminiService.js"></script>
-    <script src="js/mockData.js"></script>
-    <script src="js/apiService.js"></script>
     <script src="js/validation.js"></script>
     <script src="js/fileCheck.js"></script>
     <script src="js/uiHandler.js"></script>
+    <script src="js/apiService.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/app.js"></script>
 
   </body>
