@@ -66,16 +66,19 @@
             />
           </div>
 
-          <!-- Job Description -->
+          <!-- Job Description - CHANGED TO FILE INPUT -->
           <div class="form-group">
-            <label for="jobDescription">Job Description *</label>
-            <textarea
-              id="jobDescription"
-              name="jobDescription"
-              placeholder="Paste the job description here to match your resume"
-              rows="5"
+            <label for="jdFile">Job Description (PDF) *</label>
+            <input
+              type="file"
+              id="jdFile"
+              name="jdFile"
+              accept="application/pdf,.pdf"
               required
-            ></textarea>
+            />
+            <small class="help-text">
+              Upload the job description as a PDF file · Max size: 5MB
+            </small>
           </div>
 
           <!-- Resume Upload -->
@@ -119,7 +122,7 @@
           aria-live="polite"
         >
           <p class="info-text">
-            Upload a resume to get started 🚀
+            Upload a resume and job description PDF to get started 🚀
           </p>
         </section>
       </main>

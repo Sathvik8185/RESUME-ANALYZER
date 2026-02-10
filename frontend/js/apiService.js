@@ -1,10 +1,11 @@
 const APIService = {
-  async analyzeResume(file, jdText) {
-    console.log("API: Sending file:", file.name, "JD length:", jdText.length);
+  async analyzeResume(resumeFile, jdFile) {  // Change parameter name
+    console.log("API: Sending resume:", resumeFile?.name);
+    console.log("API: Sending JD file:", jdFile?.name);
     
     const formData = new FormData();
-    formData.append("resume", file);
-    formData.append("jd_text", jdText);
+    formData.append("resume", resumeFile);
+    formData.append("jd_file", jdFile);  // Change from "jd_text" to "jd_file"
     
     try {
       const response = await fetch(`${CONFIG.BASE_URL}${CONFIG.ENDPOINTS.ANALYZE}`, {

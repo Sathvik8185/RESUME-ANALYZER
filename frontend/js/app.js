@@ -5,6 +5,7 @@
 const ResumeAnalyzerApp = {
   state: {
     uploadedFile: null,
+    jdFile: null,  
     isProcessing: false,
     analysisResult: null,
   },
@@ -16,12 +17,20 @@ const ResumeAnalyzerApp = {
 
   setupEventListeners() {
     const fileInput = document.getElementById("resume");
+    const jdFileInput = document.getElementById("jdFile");  
     const submitBtn = document.getElementById("submitBtn");
     const downloadBtn = document.getElementById("downloadReportBtn");
 
     if (fileInput) {
       fileInput.addEventListener("change", (e) =>
         this.handleFileSelect(e)
+      );
+    }
+
+    
+    if (jdFileInput) {
+      jdFileInput.addEventListener("change", (e) =>
+        this.handleJDFileSelect(e)
       );
     }
 
@@ -52,7 +61,24 @@ const ResumeAnalyzerApp = {
     }
 
     this.state.uploadedFile = file;
-    UIHandler.showSuccess(`File selected: ${file.name}`);
+    UIHandler.showSuccess(`Resume selected: ${file.name}`);
+  },
+
+  
+  handleJDFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const validation = FileValidator.validateFile(file);
+    if (!validation.valid) {
+      UIHandler.showError("JD: " + validation.error);
+      event.target.value = "";
+      this.state.jdFile = null;
+      return;
+    }
+
+    this.state.jdFile = file;
+    UIHandler.showSuccess(`Job Description selected: ${file.name}`);
   },
 
   async handleAnalyzeClick() {
@@ -60,14 +86,12 @@ const ResumeAnalyzerApp = {
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
-    const jobDescription = document
-      .getElementById("jobDescription")
-      .value.trim();
 
+    
     const validation = FormValidator.validateForm({
       name,
       email,
-      jobDescription,
+      
     });
 
     if (!validation.valid) {
@@ -80,36 +104,37 @@ const ResumeAnalyzerApp = {
       return;
     }
 
-    await this.processResume(jobDescription);
+    
+    if (!this.state.jdFile) {
+      UIHandler.showError("Please select a job description PDF file");
+      return;
+    }
+
+    await this.processResume();
   },
 
-  async processResume(jobDescription) {
+  async processResume() { 
     this.state.isProcessing = true;
     UIHandler.showLoading("Analyzing resume...");
 
     try {
-      // Call the API service
+     
       const result = await APIService.analyzeResume(
         this.state.uploadedFile,
-        jobDescription
+        this.state.jdFile  
       );
 
-      console.log("API Result:", result); // Debug log
+      console.log("API Result:", result);
 
-      // ✅ FIX: Check result.success (not result.status)
       if (!result.success) {
         throw new Error(
           result.error || "Resume analysis failed"
         );
       }
 
-      // ✅ FIX: Store the actual data
       this.state.analysisResult = result.data;
-      
-      // Display results
       this.displayResults(result.data);
 
-      // Show download button
       document.getElementById("downloadReportBtn").style.display = "block";
       
     } catch (err) {
@@ -125,7 +150,7 @@ const ResumeAnalyzerApp = {
 
   showInitialUI() {
     document.getElementById("result").innerHTML =
-      '<p class="info-text">Upload a resume to get started 🚀</p>';
+      '<p class="info-text">Upload a resume and job description PDF to get started 🚀</p>';
   },
 
   generatePDF() {
